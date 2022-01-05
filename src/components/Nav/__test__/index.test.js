@@ -1,4 +1,9 @@
 import React from 'react';
+const categories = [
+    { name: 'portraits', description: 'Portraits of people in my life' }
+  ]
+  const mockCurrentCategory = jest.fn();
+  const mockSetCurrentCategory = jest.fn();
 
 //'render' renders the component in simulated DOM, 'cleanup' function removes
 //components from DOM to prevent memory leaking, or collisions that could corrupt tests
@@ -14,8 +19,12 @@ afterEach(cleanup);
 describe("Nav component", () => {
     //baseline test
     test('renders', () => {
-        render(<Nav></Nav>)
-    })
+        render(<Nav
+          categories={categories}
+          setCurrentCategory={mockSetCurrentCategory}
+          currentCategory={mockCurrentCategory}
+        />);
+      })
     //snapshot test
     test('matches snapshot', () => {
         const { asFragment } = render(<Nav></Nav>);
